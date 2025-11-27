@@ -3,14 +3,14 @@ import styles from './VoteStats.module.css';
 
 interface VoteStatsProps {
   userVotes: Votes<number>;
-  total: number;
-  rates: number;
+  totalVotes: number;
+  positiveRate : number;
 }
 
 const VoteStats = ({
   userVotes: { good, neutral, bad },
-  total,
-  rates,
+  totalVotes,
+  positiveRate,
 }: VoteStatsProps) => {
   return (
     <div className={styles.container}>
@@ -24,10 +24,10 @@ const VoteStats = ({
         Bad: <strong>{bad}</strong>
       </p>
       <p className={styles.stat}>
-        Total: <strong>{total}</strong>
+        Total: <strong>{totalVotes}</strong>
       </p>
       <p className={styles.stat}>
-        Positive: <strong>{rates}%</strong>
+        Positive: <strong>{positiveRate}%</strong>
       </p>
     </div>
   );
