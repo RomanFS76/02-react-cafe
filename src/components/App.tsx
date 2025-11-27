@@ -6,8 +6,6 @@ import VoteOptions from './VoteOptions/VoteOptions';
 import VoteStats from './VoteStats/VoteStats';
 import type { Votes } from '../types/votes';
 
-
-
 const userVotes: Votes<number> = {
   good: 0,
   neutral: 0,
@@ -17,14 +15,39 @@ const userVotes: Votes<number> = {
 export default function App() {
   const [votes, setVotes] = useState(userVotes);
 
-  
+  const totalVotes = votes.good + votes.neutral + votes.bad;
+
+  const showResetBtn = totalVotes > 0;
+
+  const positiveRate = totalVotes
+    ? Math.round((votes.good / totalVotes) * 100)
+    : 0;
+
+  const handleVote = (type: keyof Votes<number>) => {
+    setVotes(prev => ({
+      ...prev,
+      [type]: prev[type] + 1,
+    }));
+  };
+
+  const handleReset = () => {
+    setVotes(userVotes);
+  };
 
   return (
     <div className={css.app}>
       <CafeInfo />
-      <VoteOptions />
-      <VoteStats />
-      <Notification />
+      <VoteOptions
+        onUpdate={handleVote}
+        onReset={handleReset}
+        canReset={showResetBtn}
+      />
+
+      {totalVotes > 0 ? (
+        <VoteStats userVotes={votes} total={totalVotes} rates={positiveRate} />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 }
