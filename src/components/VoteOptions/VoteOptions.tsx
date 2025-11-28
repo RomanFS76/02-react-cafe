@@ -2,21 +2,21 @@ import type { VoteType } from '../../types/votes';
 import css from './VoteOptions.module.css';
 
 interface VoteOptionsProps {
-  onUpdate: (vote: VoteType) => void;
+  onVote : (vote: VoteType) => void;
   onReset: () => void;
   canReset: boolean;
 }
 
-const VoteOptions = ({ onUpdate, onReset, canReset }: VoteOptionsProps) => {
+const VoteOptions = ({ onVote , onReset, canReset }: VoteOptionsProps) => {
   return (
     <div className={css.container}>
-      <button className={css.button} onClick={() => onUpdate('good')}>
+      <button className={css.button} onClick={() => onVote ('good')}>
         Good
       </button>
-      <button className={css.button} onClick={() => onUpdate('neutral')}>
+      <button className={css.button} onClick={() => onVote ('neutral')}>
         Neutral
       </button>
-      <button className={css.button} onClick={() => onUpdate('bad')}>
+      <button className={css.button} onClick={() => onVote ('bad')}>
         Bad
       </button>
       {canReset && (
