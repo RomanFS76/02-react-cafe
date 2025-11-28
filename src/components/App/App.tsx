@@ -6,14 +6,13 @@ import VoteOptions from '../VoteOptions/VoteOptions';
 import VoteStats from '../VoteStats/VoteStats';
 import type { Votes } from '../../types/votes';
 
-const userVotes: Votes = {
+export default function App() {
+  
+  const [votes, setVotes] = useState({
   good: 0,
   neutral: 0,
   bad: 0,
-};
-
-export default function App() {
-  const [votes, setVotes] = useState(userVotes);
+});
 
   const totalVotes = votes.good + votes.neutral + votes.bad;
 
@@ -31,7 +30,7 @@ export default function App() {
   };
 
   const handleReset = () => {
-    setVotes(userVotes);
+    setVotes(votes);
   };
 
   return (
@@ -44,7 +43,7 @@ export default function App() {
       />
 
       {totalVotes > 0 ? (
-        <VoteStats userVotes={votes} totalVotes={totalVotes} positiveRate ={positiveRate} />
+        <VoteStats votes={votes} totalVotes={totalVotes} positiveRate ={positiveRate} />
       ) : (
         <Notification />
       )}

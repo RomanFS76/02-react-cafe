@@ -2,13 +2,13 @@ import type { Votes } from '../../types/votes';
 import styles from './VoteStats.module.css';
 
 interface VoteStatsProps {
-  userVotes: Votes;
+  votes: Votes;
   totalVotes: number;
   positiveRate : number;
 }
 
 const VoteStats = ({
-  userVotes: { good, neutral, bad },
+  votes: { good, neutral, bad },
   totalVotes,
   positiveRate,
 }: VoteStatsProps) => {
