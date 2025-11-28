@@ -31,7 +31,7 @@ export default function App() {
   };
 
   const handleReset = () => {
-    setVotes(votes);
+    setVotes(initialVotes);
   };
 
   return (
