@@ -6,7 +6,7 @@ import VoteOptions from '../VoteOptions/VoteOptions';
 import VoteStats from '../VoteStats/VoteStats';
 import type { Votes } from '../../types/votes';
 
-const userVotes: Votes<number> = {
+const userVotes: Votes = {
   good: 0,
   neutral: 0,
   bad: 0,
@@ -23,7 +23,7 @@ export default function App() {
     ? Math.round((votes.good / totalVotes) * 100)
     : 0;
 
-  const handleVote = (type: keyof Votes<number>) => {
+  const handleVote = (type: keyof Votes) => {
     setVotes(prev => ({
       ...prev,
       [type]: prev[type] + 1,
